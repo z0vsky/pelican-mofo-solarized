@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}{{ SITENAME|striptags }} - {{ article.title|striptags  }}{% endblock %}
+{% block head %}
+{{ super() }}
+    {% if article.description %}
+    <meta name="description" content="{{article.description}}" />
+    {% endif %}
+    {% for tag in article.tags %}
+    <meta name="tags" content="{{tag}}" />
+    {% endfor %}
+{% endblock %}
+{% block content %}
+      <article>
+        <header>
+          <h2>{{ article.title }}</h2>
+          <div class="published-datetime">Published: <time datetime="{{ article.date.replace(hour=13, minute=37, second=42).isoformat() }}">{{ article.date.strftime('%Y-%m-%d') }}</time></div>
+          {% if article.modified %}
+          <div class="published-datetime">Published: <time datetime="{{ article.modified.replace(hour=13, minute=37, second=42).isoformat() }}">{{ article.modified.strftime('%Y-%m-%d') }}</time></div>
+          {% endif %}
+          {% if article.tags %}
+            <p>
+              Tags:
+              {% for tag in article.tags %}
+                <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+              {% endfor %}
+            </p>
+          {% endif %}
+        </header>
+{{ article.content }}
+      </article>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+      {% block content %}
+      <section aria-labelledby="all-articles-heading">
+        <h2 id="all-articles-heading">Articles</h2>
+        {% if articles %}
+        <ul class="articles">
+          {% for article in articles %}
+            <li class="article">
+              <time datetime="{{ article.date.replace(hour=13, minute=37, second=42).isoformat() }}">{{ article.date.strftime('%Y-%m-%d') }}</time>
+              <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title | striptags | escape }}">{{ article.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>No articles.</p>
+        {% endif %}
+      </section>
+      {% endblock %}

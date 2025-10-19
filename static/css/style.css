@@ -1,0 +1,115 @@
+body{
+     color: #333;
+     background-color: #FFFEFA;
+     font-size: 18px;
+     font: 1.2rem/1.5 Century Gothic, sans-serif;
+     max-width: 40em;
+     max-width: 67ch;
+     margin: 0 auto;
+     padding: .5em;
+}
+ h1,h2,h3,h4,h5,h6{
+     line-height: 1.2;
+     font-family: Arial, serif;
+}
+ h1{
+     font-size: 2rem;
+}
+ header h1 a {
+     margin: 0 -.5em;
+     padding: .5em .5em;
+     color: #B58900;
+     text-decoration: none;
+}
+ header h1 a:hover {
+  background-color: #fdf6e3;
+  color: #664D00;
+}
+ a {
+     color: #2952A3;
+}
+ a:focus{
+     outline: 0.2rem solid #8FA3A8;
+     outline-offset: 0.4rem;
+}
+ p {
+     margin-bottom: 2rem;
+}
+ section, aside, footer{
+     margin: 2.5rem auto;
+}
+ ul{
+     margin-top: -1.25rem;
+     margin-bottom: 2.25rem;
+}
+ b{
+     background-color: rgba(200,195,190,0.15);
+     padding: 0.4rem;
+     margin: -0.4rem;
+}
+ dt{
+     font-weight: bold;
+     margin-top: 1rem;
+}
+ dt:target{
+     background-color: rgba(200,195,190,0.35);
+     padding: 0.2rem;
+     margin: 0.8rem -0.2rem 0 -0.2rem;
+     outline: 2px solid rgba(125,125,125, 0.75);
+}
+ pre {
+     font-size: 1rem;
+}
+ code {
+     background-color: #fdf6e3;
+     border-radius: 6px;
+     border: 1px solid rgba(27,31,35,.069);
+     font-size: 1rem;
+     margin: 0;
+     padding: .2em .4em;
+     word-break: break-all;
+}
+ footer {
+     font-size: 0.8rem;
+}
+ article header h2 {
+     margin-bottom: 0;
+}
+ ul.articles {
+     margin: 0;
+     padding: 0;
+     list-style-type: none;
+}
+ ul.articles a {
+     margin-left: 2em;
+}
+ img.emoji, .license img {
+     height: 1em;
+     margin:0 0.05em 0 0.1em;
+     vertical-align:-.1em;
+     width: 1em;
+}
+ .published-datetime {
+     font-size: 1rem;
+     color: #8FA3A8;
+}
+ @media (prefers-color-scheme: dark) {
+     body {
+         color:#ddd;
+         background:#00141A;
+    }
+     a:focus {
+         outline: 0.1em solid #8FA3A8;
+    }
+     a {
+         color:#5bf;
+    }
+     code {
+         background-color: #002b36;
+         border: 1px solid #073642;
+    }
+    header h1 a:hover {
+         background-color: #002b36;
+    }
+}
+ 
