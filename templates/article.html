@@ -15,7 +15,7 @@
           <h2>{{ article.title }}</h2>
           <div class="published-datetime">Published: <time datetime="{{ article.date.replace(hour=13, minute=37, second=42).isoformat() }}">{{ article.date.strftime('%Y-%m-%d') }}</time></div>
           {% if article.modified %}
-          <div class="published-datetime">Published: <time datetime="{{ article.modified.replace(hour=13, minute=37, second=42).isoformat() }}">{{ article.modified.strftime('%Y-%m-%d') }}</time></div>
+          <div class="published-datetime">Updated: <time datetime="{{ article.modified.replace(hour=13, minute=37, second=42).isoformat() }}">{{ article.modified.strftime('%Y-%m-%d') }}</time></div>
           {% endif %}
           {% if article.tags %}
             <p>
