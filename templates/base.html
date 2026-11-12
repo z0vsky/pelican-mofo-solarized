@@ -67,6 +67,23 @@
       {% if SITESUBTITLE %}
       <p>{{ SITESUBTITLE }}</p>
       {% endif %}
+      {% set menu_pages = pages if DISPLAY_PAGES_ON_MENU else [] %}
+      {% set menu_categories = categories if DISPLAY_CATEGORIES_ON_MENU else [] %}
+      {% if MENUITEMS or menu_pages or menu_categories %}
+      <nav aria-label="Main">
+        <ul>
+          {% for title, link in MENUITEMS %}
+          <li><a href="{{ link }}">{{ title }}</a></li>
+          {% endfor %}
+          {% for p in menu_pages %}
+          <li><a href="{{ SITEURL }}/{{ p.url }}"{% if page is defined and p == page %} aria-current="page"{% endif %}>{{ p.title }}</a></li>
+          {% endfor %}
+          {% for cat, null in menu_categories %}
+          <li><a href="{{ SITEURL }}/{{ cat.url }}"{% if category is defined and cat == category %} aria-current="page"{% endif %}>{{ cat }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+      {% endif %}
       {% endblock header %}
     </header>
     <main>

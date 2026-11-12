@@ -61,6 +61,16 @@ MOFO_LICENSE = {
 
 The theme ships no license icons. To show icons, add your own image files to your site, for example in `content/images/license/` (`images` is in Pelican's default `STATIC_PATHS`). The official Creative Commons icons are on the [Creative Commons downloads page](https://creativecommons.org/mission/downloads/).
 
+### Navigation
+
+The header shows a menu built from Pelican's standard settings:
+
+- `MENUITEMS`: extra links, as `(title, url)` pairs
+- `DISPLAY_PAGES_ON_MENU`: your pages (Pelican default: `True`)
+- `DISPLAY_CATEGORIES_ON_MENU`: your categories (Pelican default: `True`)
+
+Set the last two to `False` to hide those links. If the menu would be empty, it isn't shown.
+
 ### Code highlighting
 
 Code is highlighted when the site is built, with no JavaScript. This uses the `codehilite` Markdown extension, which Pelican enables by default. If you set your own `MARKDOWN` setting, keep it enabled with `css_class` set to `highlight`:

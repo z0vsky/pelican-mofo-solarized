@@ -46,6 +46,18 @@ body{
  a {
      color: var(--link);
 }
+ header nav ul {
+     display: flex;
+     flex-wrap: wrap;
+     gap: .25em 1.25em;
+     list-style: none;
+     margin: 0;
+     padding: 0;
+}
+ header nav a[aria-current="page"] {
+     font-weight: bold;
+     text-decoration: none;
+}
  a:focus{
      outline: 0.2rem solid var(--muted);
      outline-offset: 0.4rem;
