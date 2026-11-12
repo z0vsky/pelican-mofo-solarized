@@ -1,5 +1,7 @@
+{% set color_scheme = MOFO_COLOR_SCHEME|default('system') %}
+{% set code_scheme = MOFO_CODE_SCHEME|default('system') %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-scheme="{{ color_scheme }}">
   <head>
     {% block head %}
     <title>{% block title %}{{ SITENAME|striptags }}{% endblock title %}</title>
@@ -38,9 +40,14 @@
     {% if TAG_FEED_RSS and tag %}
     <link href="{{ FEED_DOMAIN }}/{% if TAG_FEED_RSS_URL %}{{ TAG_FEED_RSS_URL.format(slug=tag.slug) }}{% else %}{{ TAG_FEED_RSS.format(slug=tag.slug) }}{% endif %}" type="application/rss+xml" rel="alternate" title="{{ SITENAME|striptags }} Tags RSS Feed">
     {% endif %}
-    <link rel="prefetch stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/style.css">
-    <link rel="prefetch stylesheet" href="{{ SITEURL }}/theme/css/solarized-dark.min.css" media="(prefers-color-scheme: dark)">
-    <link rel="prefetch stylesheet" href="{{ SITEURL }}/theme/css/solarized-light.min.css" media="(prefers-color-scheme: light)">
+    <meta name="color-scheme" content="{{ 'light dark' if color_scheme == 'system' else color_scheme }}">
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css">
+    {% if code_scheme in ('light', 'system') %}
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/code-light.css"{% if code_scheme == 'system' %} media="(prefers-color-scheme: light)"{% endif %}>
+    {% endif %}
+    {% if code_scheme in ('dark', 'system') %}
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/code-dark.css"{% if code_scheme == 'system' %} media="(prefers-color-scheme: dark)"{% endif %}>
+    {% endif %}
     {% block meta_description %}
     {% if SITESUBTITLE %}
     <meta name="description" content="{{ SITESUBTITLE|striptags|e }}">
@@ -50,10 +57,14 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-TileImage" content="{{ SITEURL }}/ms-icon-144x144.png">
     <meta name="msapplication-config" content="{{ SITEURL }}/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
+    {% if color_scheme in ('light', 'system') %}
+    <meta name="theme-color" content="#fdf6e3"{% if color_scheme == 'system' %} media="(prefers-color-scheme: light)"{% endif %}>
+    {% endif %}
+    {% if color_scheme in ('dark', 'system') %}
+    <meta name="theme-color" content="#002b36"{% if color_scheme == 'system' %} media="(prefers-color-scheme: dark)"{% endif %}>
+    {% endif %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-    <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js"></script>
+    <script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/@twemoji/api@17.0.3/dist/twemoji.min.js"></script>
     <script defer src="{{ SITEURL }}/theme/js/app.js"></script>
     {% endblock head %}
   </head>

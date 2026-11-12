@@ -1,7 +1,25 @@
+/*
+ * Colours: Solarized palette (https://ethanschoonover.com/solarized/),
+ * adjusted where needed to keep WCAG AA contrast.
+ * light-dark() picks the first value in light mode, the second in dark mode.
+ * The mode follows `color-scheme`, set from MOFO_COLOR_SCHEME via data-scheme.
+ */
+:root {
+     color-scheme: light dark;
+     --bg:          light-dark(#fdf6e3, #002b36); /* base3 / base03 */
+     --fg:          light-dark(#073642, #eee8d5); /* base02 / base2 */
+     --muted:       light-dark(#586e75, #93a1a1); /* base01 / base1 */
+     --link:        light-dark(#2952a3, #55bbff);
+     --accent:      light-dark(#8a6900, #b58900); /* darkened yellow / yellow */
+     --accent-hover: light-dark(#664d00, #b58900);
+     --surface:     light-dark(#eee8d5, #073642); /* base2 / base02 */
+     --border:      light-dark(rgba(0,0,0,.08), rgba(255,255,255,.08));
+}
+ :root[data-scheme="light"] { color-scheme: light; }
+ :root[data-scheme="dark"]  { color-scheme: dark; }
 body{
-     color: #333;
-     background-color: #FFFEFA;
-     font-size: 18px;
+     color: var(--fg);
+     background-color: var(--bg);
      font: 1.2rem/1.5 Century Gothic, sans-serif;
      max-width: 40em;
      max-width: 67ch;
@@ -18,18 +36,18 @@ body{
  header h1 a {
      margin: 0 -.5em;
      padding: .5em .5em;
-     color: #B58900;
+     color: var(--accent);
      text-decoration: none;
 }
  header h1 a:hover {
-  background-color: #fdf6e3;
-  color: #664D00;
+     background-color: var(--surface);
+     color: var(--accent-hover);
 }
  a {
-     color: #2952A3;
+     color: var(--link);
 }
  a:focus{
-     outline: 0.2rem solid #8FA3A8;
+     outline: 0.2rem solid var(--muted);
      outline-offset: 0.4rem;
 }
  p {
@@ -59,15 +77,29 @@ body{
 }
  pre {
      font-size: 1rem;
+     overflow-x: auto;
 }
  code {
-     background-color: #fdf6e3;
+     background-color: var(--surface);
      border-radius: 6px;
-     border: 1px solid rgba(27,31,35,.069);
+     border: 1px solid var(--border);
      font-size: 1rem;
      margin: 0;
      padding: .2em .4em;
      word-break: break-all;
+}
+ /* Code blocks: colours come from code-light.css / code-dark.css (Pygments). */
+ .highlight {
+     border-radius: 6px;
+     border: 1px solid var(--border);
+     margin-bottom: 2rem;
+     padding: 0 1em;
+}
+ pre code {
+     background: none;
+     border: 0;
+     padding: 0;
+     word-break: normal;
 }
  footer {
      font-size: 0.8rem;
@@ -91,25 +123,5 @@ body{
 }
  .published-datetime {
      font-size: 1rem;
-     color: #8FA3A8;
+     color: var(--muted);
 }
- @media (prefers-color-scheme: dark) {
-     body {
-         color:#ddd;
-         background:#00141A;
-    }
-     a:focus {
-         outline: 0.1em solid #8FA3A8;
-    }
-     a {
-         color:#5bf;
-    }
-     code {
-         background-color: #002b36;
-         border: 1px solid #073642;
-    }
-    header h1 a:hover {
-         background-color: #002b36;
-    }
-}
- 
