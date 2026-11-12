@@ -1,12 +1,18 @@
 {% extends "base.html" %}
+{% block html_lang %}{{ page.lang }}{% endblock %}
 {% block title %}{{ SITENAME|striptags }} - {{ page.title|striptags }}{%endblock%}
-{% block head %}
-{{ super() }}
+{% block extra_head %}
+    {% import 'translations.html' as translations with context %}
+    {{ translations.entry_hreflang(page) }}
 {% endblock %}
 {% block content %}
+    {% import 'translations.html' as translations with context %}
       <article>
         <header>
           <h2>{{ page.title }}</h2>
+          {% if page.translations %}
+          <p>{{ translations.translations_for(page) }}</p>
+          {% endif %}
         </header>
 {{ page.content }}
       </article>

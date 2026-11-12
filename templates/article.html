@@ -1,22 +1,32 @@
 {% extends "base.html" %}
+{% block html_lang %}{{ article.lang }}{% endblock %}
 {% block title %}{{ SITENAME|striptags }} - {{ article.title|striptags  }}{% endblock %}
-{% block head %}
-{{ super() }}
-    {% if article.description %}
-    <meta name="description" content="{{article.description}}" />
+{% block meta_description %}
+    {% set description = article.description or article.summary %}
+    {% if description %}
+    <meta name="description" content="{{ description|striptags|e }}">
     {% endif %}
-    {% for tag in article.tags %}
-    <meta name="tags" content="{{tag}}" />
-    {% endfor %}
+    {% if article.tags %}
+    <meta name="keywords" content="{{ article.tags|join(', ')|e }}">
+    {% endif %}
+{% endblock %}
+{% block extra_head %}
+    {% import 'translations.html' as translations with context %}
+    {{ translations.entry_hreflang(article) }}
 {% endblock %}
 {% block content %}
+    {% import 'translations.html' as translations with context %}
       <article>
         <header>
           <h2>{{ article.title }}</h2>
-          <div class="published-datetime">Published: <time datetime="{{ article.date.replace(hour=13, minute=37, second=42).isoformat() }}">{{ article.date.strftime('%Y-%m-%d') }}</time></div>
+          <div class="published-datetime">Published: <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%Y-%m-%d') }}</time></div>
           {% if article.modified %}
-          <div class="published-datetime">Published: <time datetime="{{ article.modified.replace(hour=13, minute=37, second=42).isoformat() }}">{{ article.modified.strftime('%Y-%m-%d') }}</time></div>
+          <div class="published-datetime">Updated: <time datetime="{{ article.modified.strftime('%Y-%m-%d') }}">{{ article.modified.strftime('%Y-%m-%d') }}</time></div>
           {% endif %}
+          <div class="published-datetime">
+            {%- if article.authors %}By {% for author in article.authors %}<a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>{% if not loop.last %}, {% endif %}{% endfor %} {% endif -%}
+            in <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+          </div>
           {% if article.tags %}
             <p>
               Tags:
@@ -24,6 +34,9 @@
                 <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
               {% endfor %}
             </p>
+          {% endif %}
+          {% if article.translations %}
+          <p>{{ translations.translations_for(article) }}</p>
           {% endif %}
         </header>
 {{ article.content }}
