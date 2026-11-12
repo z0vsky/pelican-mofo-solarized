@@ -9,15 +9,17 @@
 {% endif %}
 {% set og_description = (entry.description or entry.summary) if entry else SITESUBTITLE %}
 {% set og_image = entry.og_image if entry and entry.og_image else MOFO_OG_IMAGE %}
-{% set show_image = og_image and ('://' in og_image or SITEURL) %}
+{# With RELATIVE_URLS, Pelican turns SITEURL into a relative path, so check it is absolute. #}
+{% set absolute_siteurl = SITEURL and SITEURL.startswith(('http://', 'https://')) %}
+{% set show_image = og_image and ('://' in og_image or absolute_siteurl) %}
     <meta property="og:site_name" content="{{ SITENAME|striptags|e }}">
     <meta property="og:type" content="{{ 'article' if article is defined else 'website' }}">
     <meta property="og:title" content="{{ (entry.title if entry else page_title)|striptags|e }}">
 {% if og_description %}
     <meta property="og:description" content="{{ og_description|striptags|truncate(300)|e }}">
 {% endif %}
-{# Open Graph needs absolute URLs, so these are only output when SITEURL is set. #}
-{% if SITEURL %}
+{# Open Graph needs absolute URLs, so these are only output when SITEURL is a full URL. #}
+{% if absolute_siteurl %}
     <meta property="og:url" content="{{ SITEURL }}/{{ entry.url if entry else ('' if output_file == 'index.html' else output_file) }}">
 {% endif %}
 {% if show_image %}

@@ -80,7 +80,7 @@ By default every page gets [Open Graph](https://ogp.me) tags, which social sites
 - **Title and description:** the article's or page's title, and its `Description` metadata (or its summary). Other pages use the page title and `SITESUBTITLE`.
 - **Image:** an article's or page's `Og_image` metadata, or else `MOFO_OG_IMAGE`. Use a path relative to your site root (for example `images/card.png`) or a full URL.
 - **Articles** also get their dates, category and tags.
-- **URLs must be absolute,** so `og:url` and relative images are only added when `SITEURL` is set. Set it in your `publishconf.py`.
+- **URLs must be absolute,** so `og:url` and relative images are only added when `SITEURL` is a full URL (`https://…`) and `RELATIVE_URLS` is off, as in a typical `publishconf.py`.
 
 ```markdown
 Title: My article
