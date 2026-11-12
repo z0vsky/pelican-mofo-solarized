@@ -1,0 +1,36 @@
+{# Open Graph tags (https://ogp.me), used for link previews on social sites
+   and chat apps. Included by base.html unless MOFO_OPEN_GRAPH is False. #}
+{% if article is defined %}
+  {% set entry = article %}
+{% elif page is defined %}
+  {% set entry = page %}
+{% else %}
+  {% set entry = none %}
+{% endif %}
+{% set og_description = (entry.description or entry.summary) if entry else SITESUBTITLE %}
+{% set og_image = entry.og_image if entry and entry.og_image else MOFO_OG_IMAGE %}
+{% set show_image = og_image and ('://' in og_image or SITEURL) %}
+    <meta property="og:site_name" content="{{ SITENAME|striptags|e }}">
+    <meta property="og:type" content="{{ 'article' if article is defined else 'website' }}">
+    <meta property="og:title" content="{{ (entry.title if entry else page_title)|striptags|e }}">
+{% if og_description %}
+    <meta property="og:description" content="{{ og_description|striptags|truncate(300)|e }}">
+{% endif %}
+{# Open Graph needs absolute URLs, so these are only output when SITEURL is set. #}
+{% if SITEURL %}
+    <meta property="og:url" content="{{ SITEURL }}/{{ entry.url if entry else ('' if output_file == 'index.html' else output_file) }}">
+{% endif %}
+{% if show_image %}
+    <meta property="og:image" content="{% if '://' not in og_image %}{{ SITEURL }}/{% endif %}{{ og_image }}">
+{% endif %}
+    <meta name="twitter:card" content="{{ 'summary_large_image' if show_image else 'summary' }}">
+{% if article is defined %}
+    <meta property="article:published_time" content="{{ article.date.strftime('%Y-%m-%d') }}">
+  {% if article.modified %}
+    <meta property="article:modified_time" content="{{ article.modified.strftime('%Y-%m-%d') }}">
+  {% endif %}
+    <meta property="article:section" content="{{ article.category|striptags|e }}">
+  {% for tag in article.tags %}
+    <meta property="article:tag" content="{{ tag|striptags|e }}">
+  {% endfor %}
+{% endif %}

@@ -44,6 +44,10 @@
     <meta name="description" content="{{ SITESUBTITLE|striptags|e }}">
     {% endif %}
     {% endblock meta_description %}
+    {% if MOFO_OPEN_GRAPH|default(true) %}
+    {% set page_title = self.title()|striptags %}
+    {% include 'open_graph.html' %}
+    {% endif %}
     {% block extra_head %}{% endblock extra_head %}
     <meta name="generator" content="Pelican">
     {% if color_scheme in ('light', 'system') %}

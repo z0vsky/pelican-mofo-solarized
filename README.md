@@ -45,6 +45,8 @@ All settings are optional.
 | `MOFO_COLOR_SCHEME` | `'light'`, `'dark'`, `'system'` | `'system'` | Site colours. `'system'` follows the reader's OS setting. |
 | `MOFO_CODE_SCHEME` | `'light'`, `'dark'`, `'system'` | `'system'` | Code block colours, independent of the site colours. |
 | `MOFO_LICENSE` | dict, see below | not set | License link in the footer. Not shown if unset. |
+| `MOFO_OPEN_GRAPH` | `True`, `False` | `True` | Open Graph tags for link previews, see [Link previews](#link-previews-open-graph). |
+| `MOFO_OG_IMAGE` | path or URL | not set | Default preview image for every page. |
 | `MOFO_FAVICONS` | `True`, `False` | `False` | Links favicon files, see [Favicons](#favicons). |
 | `NOW` | `datetime` | not set | Adds the current year to the footer copyright. |
 
@@ -64,6 +66,21 @@ MOFO_LICENSE = {
 ```
 
 The theme ships no license icons. To show icons, add your own image files to your site, for example in `content/images/license/` (`images` is in Pelican's default `STATIC_PATHS`). The official Creative Commons icons are on the [Creative Commons downloads page](https://creativecommons.org/mission/downloads/).
+
+### Link previews (Open Graph)
+
+By default every page gets [Open Graph](https://ogp.me) tags, which social sites and chat apps use to show a title, description and image when someone shares a link. Set `MOFO_OPEN_GRAPH = False` to remove them.
+
+- **Title and description:** the article's or page's title, and its `Description` metadata (or its summary). Other pages use the page title and `SITESUBTITLE`.
+- **Image:** an article's or page's `Og_image` metadata, or else `MOFO_OG_IMAGE`. Use a path relative to your site root (for example `images/card.png`) or a full URL.
+- **Articles** also get their dates, category and tags.
+- **URLs must be absolute,** so `og:url` and relative images are only added when `SITEURL` is set. Set it in your `publishconf.py`.
+
+```markdown
+Title: My article
+Description: One sentence shown in link previews.
+Og_image: images/my-article.png
+```
 
 ### Navigation
 
