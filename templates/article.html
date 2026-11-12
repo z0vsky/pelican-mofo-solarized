@@ -23,6 +23,10 @@
           {% if article.modified %}
           <div class="published-datetime">Updated: <time datetime="{{ article.modified.strftime('%Y-%m-%d') }}">{{ article.modified.strftime('%Y-%m-%d') }}</time></div>
           {% endif %}
+          <div class="published-datetime">
+            {%- if article.authors %}By {% for author in article.authors %}<a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>{% if not loop.last %}, {% endif %}{% endfor %} {% endif -%}
+            in <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+          </div>
           {% if article.tags %}
             <p>
               Tags:
