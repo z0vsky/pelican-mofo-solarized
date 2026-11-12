@@ -145,6 +145,13 @@ body{
      margin-bottom: 2rem;
      padding: 0 1em;
 }
+ /* Code blocks without Pygments (e.g. reStructuredText literal blocks) get the same box. */
+ :not(.highlight) > pre {
+     border-radius: 6px;
+     border: 1px solid var(--border);
+     margin-bottom: 2rem;
+     padding: 1em;
+}
  pre code {
      background: none;
      border: 0;
@@ -163,7 +170,13 @@ body{
      list-style-type: none;
 }
  ul.articles a {
-     margin-left: 2em;
+     margin-left: .75em;
+}
+ ul.articles time {
+     /* fixed-width slot keeps the titles aligned, whatever the font's digit widths */
+     display: inline-block;
+     min-width: 7em; /* fits the dates in OpenDyslexic too */
+     font-variant-numeric: tabular-nums;
 }
  img.emoji, .license img {
      height: 1em;
