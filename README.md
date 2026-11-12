@@ -137,3 +137,16 @@ AUTHOR_FEED_RSS = None
 
 DEFAULT_PAGINATION = 10
 ```
+
+## Development
+
+The `demo/` folder holds a small site that uses every feature of the theme. You need Pelican installed (`pip install pelican markdown`).
+
+```sh
+make serve                       # build the demo, serve it on http://localhost:8000, rebuild on changes
+make serve COLOR=dark CODE=light # try other colour schemes
+make demo                        # build only, into demo/output
+make css                         # regenerate the Pygments stylesheets after a Pygments upgrade
+```
+
+Tested with Pelican 4.12.
