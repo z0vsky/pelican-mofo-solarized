@@ -92,20 +92,23 @@ body{
  p + ul, p + ol {
      margin-top: -1.25rem;
 }
- nav.pagination a {
-     display: inline-block;
-     min-width: 2em;
-     padding: .25em 0;
-     text-align: center;
-}
- nav.pagination ul {
+ nav.pagination {
      display: flex;
      flex-wrap: wrap;
      align-items: baseline;
-     gap: 1em;
-     list-style: none;
-     margin: 1rem 0 0;
-     padding: 0;
+     gap: .5em 1.5em;
+     margin-top: 1.5rem;
+}
+ nav.pagination a {
+     padding: .5em 0; /* bigger tap target */
+     text-decoration: none;
+}
+ nav.pagination a:hover {
+     text-decoration: underline;
+}
+ nav.pagination .page-count {
+     color: var(--muted);
+     font-size: .9em;
 }
  b{
      background-color: rgba(200,195,190,0.15);
