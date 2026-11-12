@@ -41,9 +41,11 @@
     <link rel="prefetch stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/style.css">
     <link rel="prefetch stylesheet" href="{{ SITEURL }}/theme/css/solarized-dark.min.css" media="(prefers-color-scheme: dark)">
     <link rel="prefetch stylesheet" href="{{ SITEURL }}/theme/css/solarized-light.min.css" media="(prefers-color-scheme: light)">
+    {% block meta_description %}
     {% if SITESUBTITLE %}
-    <meta name="description" content="{{ SITESUBTITLE }}">
+    <meta name="description" content="{{ SITESUBTITLE|striptags|e }}">
     {% endif %}
+    {% endblock meta_description %}
     <meta name="generator" content="Pelican">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-TileImage" content="{{ SITEURL }}/ms-icon-144x144.png">
