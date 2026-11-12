@@ -59,6 +59,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/@twemoji/api@17.0.3/dist/twemoji.min.js"></script>
     <script defer src="{{ SITEURL }}/theme/js/app.js"></script>
+    {% if MOFO_DYSLEXIC_FONT|default(true) %}
+    {# Apply the reader's saved font choice before the page is drawn, to avoid a flash of the default font. #}
+    <script>try { if (localStorage.getItem('dyslexic-font') === '1') document.documentElement.dataset.font = 'dyslexic'; } catch (e) {}</script>
+    {% endif %}
     {% endblock head %}
   </head>
   <body>
@@ -96,6 +100,9 @@
     </main>
     <footer>
       {% block footer %}
+      {% if MOFO_DYSLEXIC_FONT|default(true) %}
+      <p class="font-switch"><label><input type="checkbox" id="dyslexic-font"> Dyslexia-friendly font (OpenDyslexic)</label></p>
+      {% endif %}
       <p class="license">&copy; {% if NOW %}{{ NOW|strftime('%Y') }} {% endif %}{{ SITENAME|striptags }}
         {%- if MOFO_LICENSE %} - <a rel="license" href="{{ MOFO_LICENSE.url }}">{{ MOFO_LICENSE.name }}</a>
           {%- for icon in MOFO_LICENSE.icons|default([]) %} <img src="{% if '://' not in icon %}{{ SITEURL }}/{% endif %}{{ icon }}" alt="">{% endfor %}

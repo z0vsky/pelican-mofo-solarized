@@ -47,6 +47,7 @@ All settings are optional.
 | `MOFO_LICENSE` | dict, see below | not set | License link in the footer. Not shown if unset. |
 | `MOFO_OPEN_GRAPH` | `True`, `False` | `True` | Open Graph tags for link previews, see [Link previews](#link-previews-open-graph). |
 | `MOFO_OG_IMAGE` | path or URL | not set | Default preview image for every page. |
+| `MOFO_DYSLEXIC_FONT` | `True`, `False` | `True` | Lets readers switch to a dyslexia-friendly font, see [Dyslexia-friendly font](#dyslexia-friendly-font). |
 | `MOFO_FAVICONS` | `True`, `False` | `False` | Links favicon files, see [Favicons](#favicons). |
 | `NOW` | `datetime` | not set | Adds the current year to the footer copyright. |
 
@@ -81,6 +82,14 @@ Title: My article
 Description: One sentence shown in link previews.
 Og_image: images/my-article.png
 ```
+
+### Dyslexia-friendly font
+
+The footer has a checkbox that lets readers switch the text to [OpenDyslexic](https://opendyslexic.org). Set `MOFO_DYSLEXIC_FONT = False` to remove it.
+
+- **Works without JavaScript:** the switch is a plain checkbox styled with CSS. A few lines of JavaScript only remember the reader's choice from page to page, in their browser's local storage. Nothing is sent anywhere.
+- **No cost for other readers:** the font files ship with the theme, so there are no third-party requests, and browsers only download them when a reader switches the font on.
+- **License:** OpenDyslexic is under the SIL Open Font License 1.1, included in `static/fonts/opendyslexic/OFL.txt`.
 
 ### Navigation
 

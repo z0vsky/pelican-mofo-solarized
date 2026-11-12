@@ -154,3 +154,31 @@ body{
      font-size: 1rem;
      color: var(--muted);
 }
+
+ /*
+  * Dyslexia-friendly font, switched on by the checkbox in the footer.
+  * Works without JavaScript via :has(); app.js only remembers the choice
+  * and sets data-font="dyslexic" on later pages.
+  * The font files are only downloaded when the font is switched on.
+  * OpenDyslexic: SIL Open Font License 1.1, see fonts/opendyslexic/OFL.txt.
+  */
+ @font-face { font-family: "OpenDyslexic"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/opendyslexic/OpenDyslexic-Regular.woff2") format("woff2"); }
+ @font-face { font-family: "OpenDyslexic"; font-style: italic; font-weight: 400; font-display: swap; src: url("../fonts/opendyslexic/OpenDyslexic-Italic.woff2") format("woff2"); }
+ @font-face { font-family: "OpenDyslexic"; font-style: normal; font-weight: 700; font-display: swap; src: url("../fonts/opendyslexic/OpenDyslexic-Bold.woff2") format("woff2"); }
+ @font-face { font-family: "OpenDyslexic"; font-style: italic; font-weight: 700; font-display: swap; src: url("../fonts/opendyslexic/OpenDyslexic-BoldItalic.woff2") format("woff2"); }
+ :root:has(#dyslexic-font:checked),
+ :root[data-font="dyslexic"] {
+     --font-body: "OpenDyslexic", sans-serif;
+}
+ :root:has(#dyslexic-font:checked) body,
+ :root[data-font="dyslexic"] body {
+     /* No extra letter or word spacing: OpenDyslexic is already widely spaced by design. */
+     line-height: 1.7;
+}
+ :root:has(#dyslexic-font:checked) :is(body, h1, h2, h3, h4, h5, h6),
+ :root[data-font="dyslexic"] :is(body, h1, h2, h3, h4, h5, h6) {
+     font-family: var(--font-body);
+}
+ .font-switch label {
+     cursor: pointer;
+}
