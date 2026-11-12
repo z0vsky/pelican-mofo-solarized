@@ -86,8 +86,26 @@ body{
      margin: 2.5rem auto;
 }
  ul{
-     margin-top: -1.25rem;
      margin-bottom: 2.25rem;
+}
+ /* Keep a list close to the paragraph that introduces it (p has a large bottom margin). */
+ p + ul, p + ol {
+     margin-top: -1.25rem;
+}
+ nav.pagination a {
+     display: inline-block;
+     min-width: 2em;
+     padding: .25em 0;
+     text-align: center;
+}
+ nav.pagination ul {
+     display: flex;
+     flex-wrap: wrap;
+     align-items: baseline;
+     gap: 1em;
+     list-style: none;
+     margin: 1rem 0 0;
+     padding: 0;
 }
  b{
      background-color: rgba(200,195,190,0.15);
