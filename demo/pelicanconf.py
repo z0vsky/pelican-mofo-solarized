@@ -29,6 +29,8 @@ IGNORE_FILES = DEFAULT_CONFIG['IGNORE_FILES'] + ['*/demo/output/*']
 
 DISPLAY_CATEGORIES_ON_MENU = False
 MENUITEMS = [('Archives', '/archives.html'), ('Tags', '/tags.html')]
+LINKS = [('Pelican', 'https://getpelican.com/'), ('Solarized', 'https://ethanschoonover.com/solarized/')]
+SOCIAL = [('Mastodon', 'https://mastodon.example/@jane'), ('GitHub', 'https://github.com/example')]
 
 # Override from the command line, e.g. `make serve COLOR=dark CODE=light CODE_COLORS=solarized`.
 MOFO_COLOR_SCHEME = os.environ.get('MOFO_COLOR_SCHEME', 'system')

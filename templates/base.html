@@ -101,11 +101,23 @@
     </main>
     <footer>
       {% block footer %}
+      {% if LINKS or SOCIAL %}
+      <nav class="footer-links" aria-label="Links">
+        <ul>
+          {% for name, link in LINKS %}
+          <li><a href="{{ link }}">{{ name }}</a></li>
+          {% endfor %}
+          {% for name, link in SOCIAL %}
+          <li><a href="{{ link }}" rel="me">{{ name }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+      {% endif %}
       {% if MOFO_DYSLEXIC_FONT|default(true) %}
-      <p class="font-switch"><label><input type="checkbox" id="dyslexic-font"> Dyslexia-friendly font (OpenDyslexic)</label></p>
+      <p class="font-switch"><label><input type="checkbox" id="dyslexic-font"> Dyslexia-friendly font</label></p>
       {% endif %}
       <p class="license">&copy; {% if NOW %}{{ NOW|strftime('%Y') }} {% endif %}{{ SITENAME|striptags }}
-        {%- if MOFO_LICENSE %} - <a rel="license" href="{{ MOFO_LICENSE.url }}">{{ MOFO_LICENSE.name }}</a>
+        {%- if MOFO_LICENSE %} &middot; <a rel="license" href="{{ MOFO_LICENSE.url }}">{{ MOFO_LICENSE.name }}</a>
           {%- for icon in MOFO_LICENSE.icons|default([]) %} <img src="{% if '://' not in icon %}{{ SITEURL }}/{% endif %}{{ icon }}" alt="">{% endfor %}
         {%- endif %}</p>
       {% endblock footer %}

@@ -88,6 +88,15 @@ Description: One sentence shown in link previews.
 Og_image: images/my-article.png
 ```
 
+### Footer links
+
+The footer shows Pelican's standard `LINKS` (a blogroll) and `SOCIAL` settings on one line, each a list of `(name, url)` pairs. Nothing is shown if they're not set. Social links get `rel="me"`, so services like Mastodon can verify the site is yours.
+
+```python
+LINKS = [('Pelican', 'https://getpelican.com/')]
+SOCIAL = [('Mastodon', 'https://mastodon.social/@you')]
+```
+
 ### Dyslexia-friendly font
 
 The footer has a checkbox that lets readers switch the text to [OpenDyslexic](https://opendyslexic.org). Set `MOFO_DYSLEXIC_FONT = False` to remove it.
