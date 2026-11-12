@@ -24,6 +24,10 @@ With some basic colors from the Solarized colour schemes (light and dark).
 
 This is a personal take on a middle ground between minimalism and aesthetics.
 
+## Accessibility
+
+All text, including syntax-highlighted code, meets WCAG AA colour contrast (at least 4.5:1) in both light and dark mode. Solarized's own syntax colours fall short of that, so `tools/code_css.py` darkens or lightens each one just enough while keeping its hue. Pages use semantic landmarks (`header`, `nav`, `main`, `footer`), set their language, and score 100 in Lighthouse's accessibility audit.
+
 ## Requirements
 
 ```
@@ -172,7 +176,7 @@ The `demo/` folder holds a small site that uses every feature of the theme. You 
 make serve                       # build the demo, serve it on http://localhost:8000, rebuild on changes
 make serve COLOR=dark CODE=light # try other colour schemes
 make demo                        # build only, into demo/output
-make css                         # regenerate the Pygments stylesheets after a Pygments upgrade
+make css                         # regenerate the code colour stylesheets (tools/code_css.py)
 ```
 
 Tested with Pelican 4.12.

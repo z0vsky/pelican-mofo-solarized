@@ -1,5 +1,5 @@
 PELICAN    ?= pelican
-PYGMENTIZE ?= pygmentize
+PYTHON     ?= python3
 
 DEMO   := demo
 OUTPUT := $(DEMO)/output
@@ -18,9 +18,9 @@ help: ## Show this help
 	@echo
 	@echo "  Options: COLOR=light|dark|system  CODE=light|dark|system  PORT=$(PORT)"
 
-css: ## Regenerate the Pygments code highlighting stylesheets
-	$(PYGMENTIZE) -S solarized-light -f html -a .highlight > static/css/code-light.css
-	$(PYGMENTIZE) -S solarized-dark -f html -a .highlight > static/css/code-dark.css
+css: ## Regenerate the code highlighting stylesheets (needs Pygments)
+	$(PYTHON) tools/code_css.py solarized-light > static/css/code-light.css
+	$(PYTHON) tools/code_css.py solarized-dark > static/css/code-dark.css
 
 demo: ## Build the demo site into demo/output
 	$(DEMO_ENV) $(PELICAN) $(DEMO)/content -s $(DEMO)/pelicanconf.py -o $(OUTPUT) --delete-output-directory
