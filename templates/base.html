@@ -1,7 +1,7 @@
 {% set color_scheme = MOFO_COLOR_SCHEME|default('system') %}
 {% set code_scheme = MOFO_CODE_SCHEME|default('system') %}
 <!DOCTYPE html>
-<html lang="en" data-scheme="{{ color_scheme }}">
+<html lang="{% block html_lang %}{{ DEFAULT_LANG }}{% endblock html_lang %}" data-scheme="{{ color_scheme }}">
   <head>
     {% block head %}
     <meta charset="utf-8">
@@ -44,6 +44,7 @@
     <meta name="description" content="{{ SITESUBTITLE|striptags|e }}">
     {% endif %}
     {% endblock meta_description %}
+    {% block extra_head %}{% endblock extra_head %}
     <meta name="generator" content="Pelican">
     {% if color_scheme in ('light', 'system') %}
     <meta name="theme-color" content="#fdf6e3"{% if color_scheme == 'system' %} media="(prefers-color-scheme: light)"{% endif %}>
