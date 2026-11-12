@@ -88,7 +88,7 @@
       {% block footer %}
       <p class="license">&copy; {% if NOW %}{{ NOW|strftime('%Y') }} {% endif %}{{ SITENAME|striptags }}
         {%- if MOFO_LICENSE %} - <a rel="license" href="{{ MOFO_LICENSE.url }}">{{ MOFO_LICENSE.name }}</a>
-          {%- for icon in MOFO_LICENSE.icons|default([]) %} <img src="{{ SITEURL }}/theme/img/{{ icon }}.svg" alt="">{% endfor %}
+          {%- for icon in MOFO_LICENSE.icons|default([]) %} <img src="{% if '://' not in icon %}{{ SITEURL }}/{% endif %}{{ icon }}" alt="">{% endfor %}
         {%- endif %}</p>
       {% endblock footer %}
     </footer>

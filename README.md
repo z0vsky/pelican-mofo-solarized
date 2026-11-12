@@ -53,9 +53,12 @@ MOFO_CODE_SCHEME = 'dark'
 MOFO_LICENSE = {
     'name': 'CC BY-NC 4.0',
     'url': 'https://creativecommons.org/licenses/by-nc/4.0/',
-    'icons': ['cc', 'by', 'nc-eu'],  # optional, files in static/img/ without .svg
+    # optional: paths relative to your site root, or full URLs
+    'icons': ['images/license/cc.svg', 'images/license/by.svg', 'images/license/nc.svg'],
 }
 ```
+
+The theme ships no license icons. To show icons, add your own image files to your site, for example in `content/images/license/` (`images` is in Pelican's default `STATIC_PATHS`). The official Creative Commons icons are on the [Creative Commons downloads page](https://creativecommons.org/mission/downloads/).
 
 ### Code highlighting
 
