@@ -2,6 +2,8 @@
 # Relative paths are resolved from this file's folder.
 import os
 
+from pelican.settings import DEFAULT_CONFIG
+
 AUTHOR = 'Jane Doe'
 SITENAME = 'Jane Doe'
 SITESUBTITLE = 'Notes on code, tools and the small web'
@@ -20,6 +22,10 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 LOAD_CONTENT_CACHE = False
+
+# The theme is this repo, and Pelican watches the whole theme folder for changes.
+# Without this, every rebuild of demo/output triggers another rebuild.
+IGNORE_FILES = DEFAULT_CONFIG['IGNORE_FILES'] + ['*/demo/output/*']
 
 DISPLAY_CATEGORIES_ON_MENU = False
 MENUITEMS = [('Archives', '/archives.html'), ('Tags', '/tags.html')]
