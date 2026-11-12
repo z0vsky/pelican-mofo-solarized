@@ -1,4 +1,4 @@
-{% if DEFAULT_PAGINATION %}
+{% if articles_paginator and articles_paginator.num_pages > 1 %}
   {% set first_page = articles_paginator.page(1) %}
   {% set last_page = articles_paginator.page(articles_paginator.num_pages) %}
   <nav>
