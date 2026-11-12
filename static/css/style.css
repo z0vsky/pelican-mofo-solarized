@@ -25,6 +25,23 @@ body{
      max-width: 67ch;
      margin: 0 auto;
      padding: .5em;
+     overflow-wrap: break-word; /* long URLs and words wrap instead of widening the page */
+}
+ img, video, iframe {
+     max-width: 100%;
+     height: auto;
+}
+ table {
+     /* wide tables scroll inside their own box on small screens */
+     display: block;
+     overflow-x: auto;
+     border-collapse: collapse;
+     margin-bottom: 2rem;
+}
+ th, td {
+     border: 1px solid var(--border);
+     padding: .3em .6em;
+     text-align: left;
 }
  h1,h2,h3,h4,h5,h6{
      line-height: 1.2;
