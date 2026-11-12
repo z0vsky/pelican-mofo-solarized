@@ -1,5 +1,6 @@
 {% set color_scheme = MOFO_COLOR_SCHEME|default('system') %}
 {% set code_scheme = MOFO_CODE_SCHEME|default('system') %}
+{% set code_suffix = '-solarized' if MOFO_CODE_COLORS|default('accessible') == 'solarized' else '' %}
 <!DOCTYPE html>
 <html lang="{% block html_lang %}{{ DEFAULT_LANG }}{% endblock html_lang %}" data-scheme="{{ color_scheme }}">
   <head>
@@ -34,10 +35,10 @@
     <meta name="color-scheme" content="{{ 'light dark' if color_scheme == 'system' else color_scheme }}">
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css">
     {% if code_scheme in ('light', 'system') %}
-    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/code-light.css"{% if code_scheme == 'system' %} media="(prefers-color-scheme: light)"{% endif %}>
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/code-light{{ code_suffix }}.css"{% if code_scheme == 'system' %} media="(prefers-color-scheme: light)"{% endif %}>
     {% endif %}
     {% if code_scheme in ('dark', 'system') %}
-    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/code-dark.css"{% if code_scheme == 'system' %} media="(prefers-color-scheme: dark)"{% endif %}>
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/code-dark{{ code_suffix }}.css"{% if code_scheme == 'system' %} media="(prefers-color-scheme: dark)"{% endif %}>
     {% endif %}
     {% block meta_description %}
     {% if SITESUBTITLE %}

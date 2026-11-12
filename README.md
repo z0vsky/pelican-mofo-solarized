@@ -26,7 +26,7 @@ This is a personal take on a middle ground between minimalism and aesthetics.
 
 ## Accessibility
 
-All text, including syntax-highlighted code, meets WCAG AA colour contrast (at least 4.5:1) in both light and dark mode. Solarized's own syntax colours fall short of that, so `tools/code_css.py` darkens or lightens each one just enough while keeping its hue. Pages use semantic landmarks (`header`, `nav`, `main`, `footer`), set their language, and score 100 in Lighthouse's accessibility audit.
+All text, including syntax-highlighted code, meets WCAG AA colour contrast (at least 4.5:1) in both light and dark mode. Solarized's own syntax colours fall short of that, so by default `tools/code_css.py` darkens or lightens each one just enough while keeping its hue. Set `MOFO_CODE_COLORS = 'solarized'` to use the official values instead. Pages use semantic landmarks (`header`, `nav`, `main`, `footer`), set their language, and score 100 in Lighthouse's accessibility audit.
 
 ## Requirements
 
@@ -48,6 +48,7 @@ All settings are optional.
 |---|---|---|---|
 | `MOFO_COLOR_SCHEME` | `'light'`, `'dark'`, `'system'` | `'system'` | Site colours. `'system'` follows the reader's OS setting. |
 | `MOFO_CODE_SCHEME` | `'light'`, `'dark'`, `'system'` | `'system'` | Code block colours, independent of the site colours. |
+| `MOFO_CODE_COLORS` | `'accessible'`, `'solarized'` | `'accessible'` | Syntax colours. `'solarized'` uses the official Solarized values, several of which are below WCAG AA contrast. |
 | `MOFO_LICENSE` | dict, see below | not set | License link in the footer. Not shown if unset. |
 | `MOFO_OPEN_GRAPH` | `True`, `False` | `True` | Open Graph tags for link previews, see [Link previews](#link-previews-open-graph). |
 | `MOFO_OG_IMAGE` | path or URL | not set | Default preview image for every page. |
@@ -175,6 +176,7 @@ The `demo/` folder holds a small site that uses every feature of the theme. You 
 ```sh
 make serve                       # build the demo, serve it on http://localhost:8000, rebuild on changes
 make serve COLOR=dark CODE=light # try other colour schemes
+make serve CODE_COLORS=solarized # official Solarized code colours
 make demo                        # build only, into demo/output
 make css                         # regenerate the code colour stylesheets (tools/code_css.py)
 ```

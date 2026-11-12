@@ -30,9 +30,10 @@ IGNORE_FILES = DEFAULT_CONFIG['IGNORE_FILES'] + ['*/demo/output/*']
 DISPLAY_CATEGORIES_ON_MENU = False
 MENUITEMS = [('Archives', '/archives.html'), ('Tags', '/tags.html')]
 
-# Override from the command line, e.g. `make serve COLOR=dark CODE=light`.
+# Override from the command line, e.g. `make serve COLOR=dark CODE=light CODE_COLORS=solarized`.
 MOFO_COLOR_SCHEME = os.environ.get('MOFO_COLOR_SCHEME', 'system')
 MOFO_CODE_SCHEME = os.environ.get('MOFO_CODE_SCHEME', 'system')
+MOFO_CODE_COLORS = os.environ.get('MOFO_CODE_COLORS', 'accessible')
 MOFO_LICENSE = {
     'name': 'CC BY 4.0',
     'url': 'https://creativecommons.org/licenses/by/4.0/',
