@@ -2,6 +2,10 @@
 
 Mofo Solarized is a clean, minimalist, responsive theme for Pelican, supporting light mode, dark mode, or following the system setting.
 
+| Light | Dark |
+|---|---|
+| ![Article page in light mode](screenshots/light.png) | ![Article page in dark mode](screenshots/dark.png) |
+
 ## Philosophy
 
 The theme is based on the motherfucking websites philosophy:
