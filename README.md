@@ -41,6 +41,7 @@ All settings are optional.
 | `MOFO_COLOR_SCHEME` | `'light'`, `'dark'`, `'system'` | `'system'` | Site colours. `'system'` follows the reader's OS setting. |
 | `MOFO_CODE_SCHEME` | `'light'`, `'dark'`, `'system'` | `'system'` | Code block colours, independent of the site colours. |
 | `MOFO_LICENSE` | dict, see below | not set | License link in the footer. Not shown if unset. |
+| `MOFO_FAVICONS` | `True`, `False` | `False` | Links favicon files, see [Favicons](#favicons). |
 | `NOW` | `datetime` | not set | Adds the current year to the footer copyright. |
 
 ```python
@@ -85,28 +86,19 @@ print("hello")
 
 ### Favicons
 
-The theme links to favicon files at the root of your site. Put them in `content/extra/` and copy them to the root:
+By default the theme links no icon files, so nothing returns a 404. Set `MOFO_FAVICONS = True` to link these files at the root of your site: `favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-icon-180x180.png` and `manifest.json`.
+
+Put them in `content/extra/` and copy them to the root:
 
 ```python
-STATIC_PATHS = ['assets', 'extra']
-
+MOFO_FAVICONS = True
+STATIC_PATHS = ['images', 'extra']
 EXTRA_PATH_METADATA = {
-    'extra/apple-icon-57x57.png': {'path': 'apple-icon-57x57.png'},
-    'extra/apple-icon-60x60.png': {'path': 'apple-icon-60x60.png'},
-    'extra/apple-icon-72x72.png': {'path': 'apple-icon-72x72.png'},
-    'extra/apple-icon-76x76.png': {'path': 'apple-icon-76x76.png'},
-    'extra/apple-icon-114x114.png': {'path': 'apple-icon-114x114.png'},
-    'extra/apple-icon-120x120.png': {'path': 'apple-icon-120x120.png'},
-    'extra/apple-icon-144x144.png': {'path': 'apple-icon-144x144.png'},
-    'extra/apple-icon-152x152.png': {'path': 'apple-icon-152x152.png'},
-    'extra/apple-icon-180x180.png': {'path': 'apple-icon-180x180.png'},
-    'extra/android-icon-192x192.png': {'path': 'android-icon-192x192.png'},
-    'extra/favicon-32x32.png': {'path': 'favicon-32x32.png'},
-    'extra/favicon-96x96.png': {'path': 'favicon-96x96.png'},
-    'extra/favicon-16x16.png': {'path': 'favicon-16x16.png'},
-    'extra/manifest.json': {'path': 'manifest.json'},
-    'extra/ms-icon-144x144.png': {'path': 'ms-icon-144x144.png'},
     'extra/favicon.ico': {'path': 'favicon.ico'},
+    'extra/favicon-16x16.png': {'path': 'favicon-16x16.png'},
+    'extra/favicon-32x32.png': {'path': 'favicon-32x32.png'},
+    'extra/apple-icon-180x180.png': {'path': 'apple-icon-180x180.png'},
+    'extra/manifest.json': {'path': 'manifest.json'},
 }
 ```
 
