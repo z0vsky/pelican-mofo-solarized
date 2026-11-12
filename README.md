@@ -1,14 +1,14 @@
 ## What is Mofo Solarized
 
-Mofo Solarized is a clean, minimalist, responsive theme for Pelican, supporting both Light and Dark mode.
+Mofo Solarized is a clean, minimalist, responsive theme for Pelican, supporting light mode, dark mode, or following the system setting.
 
 ## Philosophy
 
-The theme is based on the motherfucking websites philosphy:
+The theme is based on the motherfucking websites philosophy:
 
 - https://motherfuckingwebsite.com
 - http://bettermotherfuckingwebsite.com
-- https://perfectmotherfuckingwebsite.
+- https://perfectmotherfuckingwebsite.com
 - https://evenbettermotherfucking.website
 - https://bestmotherfucking.website
 - https://thebestmotherfucking.website
@@ -16,9 +16,9 @@ The theme is based on the motherfucking websites philosphy:
 - https://ultimatemotherfuckingwebsite.com
 - https://justfuckingusehtml.com
 
-With some basic colors from the solazired colorschemes (light and dark).
+With some basic colors from the Solarized colour schemes (light and dark).
 
-This is a personal take on a middleground between minimalism and aestetic
+This is a personal take on a middle ground between minimalism and aesthetics.
 
 ## Requirements
 
@@ -26,36 +26,65 @@ This is a personal take on a middleground between minimalism and aestetic
 pelican
 ```
 
+Code highlighting uses Pygments, which is installed with Pelican.
+
 ## Configuration
 
-Edit the Pelican config file, to set the `THEME` value to `themes/pelican-mofo-solarized`.
+Set `THEME` in your Pelican config file to the path of this theme, for example `themes/pelican-mofo-solarized`.
 
-Example basic 
+### Theme settings
 
-```
+All settings are optional.
+
+| Setting | Values | Default | Effect |
+|---|---|---|---|
+| `MOFO_COLOR_SCHEME` | `'light'`, `'dark'`, `'system'` | `'system'` | Site colours. `'system'` follows the reader's OS setting. |
+| `MOFO_CODE_SCHEME` | `'light'`, `'dark'`, `'system'` | `'system'` | Code block colours, independent of the site colours. |
+| `MOFO_LICENSE` | dict, see below | not set | License link in the footer. Not shown if unset. |
+| `NOW` | `datetime` | not set | Adds the current year to the footer copyright. |
+
+```python
 from datetime import datetime
 NOW = datetime.now()
 
-AUTHOR = 'John Doe'
-SITENAME = 'John Doe'
-SITEURL = ''
+MOFO_COLOR_SCHEME = 'system'
+MOFO_CODE_SCHEME = 'dark'
 
-PATH = 'content'
-THEME = 'themes/pelican-mofo-solarized'
+MOFO_LICENSE = {
+    'name': 'CC BY-NC 4.0',
+    'url': 'https://creativecommons.org/licenses/by-nc/4.0/',
+    'icons': ['cc', 'by', 'nc-eu'],  # optional, files in static/img/ without .svg
+}
+```
 
-TIMEZONE = 'UTC'
-DEFAULT_LANG = 'en'
+### Code highlighting
 
-FEED_ALL_ATOM = 'rss.xml'
-CATEGORY_FEED_ATOM = None
-TRANSLATION_FEED_ATOM = None
-AUTHOR_FEED_ATOM = None
-AUTHOR_FEED_RSS = None
+Code is highlighted when the site is built, with no JavaScript. This uses the `codehilite` Markdown extension, which Pelican enables by default. If you set your own `MARKDOWN` setting, keep it enabled with `css_class` set to `highlight`:
 
-PLUGINS = [
-    'sitemap',
-]
+```python
+MARKDOWN = {
+    'extension_configs': {
+        'markdown.extensions.codehilite': {'css_class': 'highlight'},
+        'markdown.extensions.extra': {},
+        'markdown.extensions.meta': {},
+    },
+    'output_format': 'html5',
+}
+```
 
+Put the language after the opening fence so the block gets highlighted:
+
+````markdown
+```python
+print("hello")
+```
+````
+
+### Favicons
+
+The theme links to favicon files at the root of your site. Put them in `content/extra/` and copy them to the root:
+
+```python
 STATIC_PATHS = ['assets', 'extra']
 
 EXTRA_PATH_METADATA = {
@@ -76,11 +105,26 @@ EXTRA_PATH_METADATA = {
     'extra/ms-icon-144x144.png': {'path': 'ms-icon-144x144.png'},
     'extra/favicon.ico': {'path': 'favicon.ico'},
 }
-
-DEFAULT_PAGINATION = False
-
-MARKDOWN = {
-    'extension_configs': {
-        'markdown.extensions.codehilite': {'css_class': 'highlight', 'guess_lang':False,},
 ```
 
+## Example configuration
+
+```python
+AUTHOR = 'John Doe'
+SITENAME = 'John Doe'
+SITEURL = ''
+
+PATH = 'content'
+THEME = 'themes/pelican-mofo-solarized'
+
+TIMEZONE = 'UTC'
+DEFAULT_LANG = 'en'
+
+FEED_ALL_ATOM = 'rss.xml'
+CATEGORY_FEED_ATOM = None
+TRANSLATION_FEED_ATOM = None
+AUTHOR_FEED_ATOM = None
+AUTHOR_FEED_RSS = None
+
+DEFAULT_PAGINATION = 10
+```
